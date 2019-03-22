@@ -8,7 +8,7 @@ fn main() {
         .read_line(&mut fahr)
         .expect("Failed to read temperature! (x_x)");
 
-    let fahr: i32 = match fahr.trim().parse() {
+    let fahr: f64 = match fahr.trim().parse() {
         Ok(n) => n,
         Err(_) => {
             println!("You must enter a number!");
@@ -21,6 +21,6 @@ fn main() {
     println!("{} degrees Fahrenheit is {} degrees Celsius", fahr, celsius);
 }
 
-fn fahrenheit_to_celsius(deg: i32) -> i32 {
-    (deg - 32) * 5 / 9
+fn fahrenheit_to_celsius(deg: f64) -> f64 {
+    (deg - 32.0) * 5.0 / 9.0
 }
