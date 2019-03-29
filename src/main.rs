@@ -1,7 +1,9 @@
 use std::io;
+use std::io::Write;
 
 fn main() {
-    println!("Enter the temperature in Fahrenheit:");
+    print!("Enter the temperature in Fahrenheit: ");
+    io::stdout().flush().unwrap();
 
     let mut fahr = String::new();
     io::stdin()
