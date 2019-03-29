@@ -13,7 +13,7 @@ fn main() {
     let fahr: f64 = match fahr.trim().parse() {
         Ok(n) => n,
         Err(_) => {
-            println!("You must enter a number!");
+            eprintln!("That's not a number!");
             std::process::exit(1);
         }
     };
