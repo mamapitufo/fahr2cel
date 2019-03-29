@@ -18,7 +18,7 @@ fn main() {
 
     let celsius = fahrenheit_to_celsius(fahr);
 
-    println!("{} degrees Fahrenheit is {} degrees Celsius", fahr, celsius);
+    println!("{:.*}°F is: {:.*}°C", 1, fahr, 1, celsius);
 }
 
 fn fahrenheit_to_celsius(deg: f64) -> f64 {
