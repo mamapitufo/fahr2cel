@@ -3,12 +3,14 @@ use std::io::Write;
 
 fn main() {
     print!("Enter the temperature in Fahrenheit: ");
-    io::stdout().flush().unwrap();
+    io::stdout()
+        .flush()
+        .expect("Error flushing stdout buffer!");
 
     let mut fahr = String::new();
     io::stdin()
         .read_line(&mut fahr)
-        .expect("Failed to read temperature! (x_x)");
+        .expect("Failed to read temperature!");
 
     let fahr: f64 = match fahr.trim().parse() {
         Ok(n) => n,
