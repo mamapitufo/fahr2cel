@@ -15,7 +15,7 @@ fn main() {
     let fahr: f64 = match fahr.trim().parse() {
         Ok(n) => n,
         Err(_) => {
-            eprintln!("That's not a number!");
+            eprintln!("The temperature must be a number!");
             std::process::exit(1);
         }
     };
