@@ -1,0 +1,3 @@
+= Simple projects from "The Rust Book"
+
+This is a handful of toy projects programmed as I read https://doc.rust-lang.org/book["The Rust Programming Language"].
