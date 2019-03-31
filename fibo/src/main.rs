@@ -1,5 +1,16 @@
+use std::env;
+
 fn main() {
-    let n = 3;
+    let args: Vec<String> = env::args().collect();
+    let n = &args[1];
+
+    let n: i64 = match n.trim().parse() {
+        Ok(n) => n,
+        Err(_) => {
+            eprintln!("The argument must be a number!");
+            std::process::exit(1);
+        }
+    };
 
     println!("Fibonacci({}) = {}", n, fibo(n));
 }
