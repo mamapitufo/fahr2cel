@@ -12,6 +12,11 @@ fn main() {
         }
     };
 
+    if n > 40 {
+        eprintln!("This will take too long!");
+        std::process::exit(2);
+    };
+
     println!("Fibonacci({}) = {}", n, fibo(n));
 }
 
