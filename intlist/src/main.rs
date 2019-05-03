@@ -13,7 +13,7 @@ fn main() {
 }
 
 fn mean(numbers: &[i32]) -> f64 {
-    let sum = numbers.iter().fold(0, |acc, n| acc + n);
+    let sum: i32 = numbers.iter().sum();
 
     f64::from(sum) / numbers.len() as f64
 }
