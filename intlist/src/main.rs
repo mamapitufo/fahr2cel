@@ -6,7 +6,7 @@ fn main() {
         .skip(1)
         .filter_map(|arg| arg.trim().parse().ok())
         .collect();
-    args.sort();
+    args.sort_unstable();
 
     let numbers = args.clone();
 
