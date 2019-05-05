@@ -24,11 +24,11 @@ fn mean(numbers: &[i32]) -> f64 {
 
 fn median(sorted: &[i32]) -> f64 {
     let count = sorted.len();
-    let mid = count / 2;
+    let mid = count / 2 - 1;
 
     if count % 2 == 0 {
-        (sorted[mid - 1] + sorted[mid]) as f64 / 2.0
+        (sorted[mid] + sorted[mid + 1]) as f64 / 2.0
     } else {
-        sorted[mid] as f64
+        sorted[mid + 1] as f64
     }
 }
