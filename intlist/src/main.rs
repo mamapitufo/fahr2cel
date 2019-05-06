@@ -24,7 +24,10 @@ fn main() {
     println!("For the integers {:?},", numbers);
     println!("  mean: {:.*}", 2, mean(&numbers));
     println!("  median: {}", median(&numbers));
-    println!("  mode: {}", mode(&numbers));
+    match mode(&numbers) {
+        Some(m) => println!("  mode: {}", m),
+        None => println!("  mode: none"),
+    }
 }
 
 fn usage_and_exit(msg: &str) {
@@ -49,7 +52,7 @@ fn median(sorted: &[i32]) -> f64 {
     }
 }
 
-fn mode(numbers: &[i32]) -> i32 {
+fn mode(numbers: &[i32]) -> Option<i32> {
     let mut freqs = HashMap::new();
 
     for n in numbers {
@@ -57,13 +60,13 @@ fn mode(numbers: &[i32]) -> i32 {
         *count += 1;
     }
 
-    let mut max = 0;
-    let mut mode: i32 = -1;
+    let mut max = 2;
+    let mut mode: Option<i32> = None;
 
     for (n, count) in freqs.iter() {
         if *count >= max {
             max = *count;
-            mode = **n;
+            mode = Some(**n);
         }
     }
 
