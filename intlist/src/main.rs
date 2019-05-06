@@ -3,19 +3,34 @@ use std::env;
 use std::iter::Iterator;
 
 fn main() {
+    let arg_count = env::args().len() - 1;
+
+    if arg_count == 0 {
+        usage_and_exit("Error: You did not provide any integers.");
+    }
+
     let mut args: Vec<i32> = env::args()
         .skip(1)
         .filter_map(|arg| arg.trim().parse().ok())
         .collect();
+
+    if arg_count > args.len() {
+        usage_and_exit("Error: at least one of the arguments provided is not an integer.");
+    }
+
     args.sort_unstable();
 
     let numbers = args.clone();
 
-    println!("Anything that is not an integer is silently discarded!\n");
     println!("For the list {:?}:", numbers);
     println!("the mean is: {}", mean(&numbers));
     println!("the median is: {}", median(&numbers));
     println!("the mode is: {}", mode(&numbers));
+}
+
+fn usage_and_exit(msg: &str) {
+    eprintln!("{}\nUsage: intlist [INTEGER ...]", msg);
+    std::process::exit(2);
 }
 
 fn mean(numbers: &[i32]) -> f64 {
