@@ -19,13 +19,12 @@ fn main() {
     }
 
     args.sort_unstable();
-
     let numbers = args.clone();
 
-    println!("For the list {:?}:", numbers);
-    println!("the mean is: {}", mean(&numbers));
-    println!("the median is: {}", median(&numbers));
-    println!("the mode is: {}", mode(&numbers));
+    println!("For the integers {:?},", numbers);
+    println!("  mean: {:.*}", 2, mean(&numbers));
+    println!("  median: {}", median(&numbers));
+    println!("  mode: {}", mode(&numbers));
 }
 
 fn usage_and_exit(msg: &str) {
