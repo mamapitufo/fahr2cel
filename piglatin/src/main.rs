@@ -20,6 +20,7 @@ fn usage_and_exit(msg: &str) {
     process::exit(2);
 }
 
+// tries to follow the rules from https://en.wikipedia.org/wiki/Pig_Latin
 fn to_pig_latin(word: &String) -> String {
     let (prefix, suffix) = split_word(&word);
 
@@ -35,7 +36,9 @@ fn split_word(word: &String) -> (String, String) {
     let mut suffix = String::new();
     let mut is_prefix = true;
 
-    // FIXME: this should also check if the first letter is 'h'
+    // FIXME: this is incorrect if the word
+    //   * begins with 'h<vowel>' as in 'honest'
+    //   * begins with 'gui' as in 'guitar'
     for c in word.chars() {
         if is_prefix && is_vowel(&c) {
             is_prefix = false;
