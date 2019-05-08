@@ -1,9 +1,13 @@
-fn main() {
-    let word = String::from("aardvark");
-    // let word = String::from("bee");
-    // let word = String::from("crocodile");
+use std::env;
 
-    println!("{} => {}", word, to_pig_latin(&word));
+fn main() {
+    let words: Vec<String> = env::args()
+        .skip(1)
+        .collect();
+
+    for word in words {
+        println!("{} => {}", word, to_pig_latin(&word));
+    }
 }
 
 fn to_pig_latin(word: &String) -> String {
