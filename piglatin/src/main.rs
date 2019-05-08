@@ -1,13 +1,23 @@
 use std::env;
+use std::process;
 
 fn main() {
     let words: Vec<String> = env::args()
         .skip(1)
         .collect();
 
+    if words.len() == 0 {
+        usage_and_exit("Error: You did not provide any words!");
+    }
+
     for word in words {
         println!("{} => {}", word, to_pig_latin(&word));
     }
+}
+
+fn usage_and_exit(msg: &str) {
+    eprintln!("{}\nUsage: piglatin [WORD ...]", msg);
+    process::exit(2);
 }
 
 fn to_pig_latin(word: &String) -> String {
