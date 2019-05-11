@@ -19,9 +19,31 @@ fn main() {
                 }
                 None => help(),
             }
+        } else if cmd == "List" {
+            list_everyone(&departments);
+        } else if cmd.starts_with("List ") {
+            list_department(&departments, &cmd[5..]);
         } else {
             help();
         }
+    }
+}
+
+fn list_everyone(departments: &HashMap<String, Vec<String>>) {
+    for department in departments.keys() {
+        list_department(&departments, department);
+    }
+}
+
+fn list_department(departments: &HashMap<String, Vec<String>>, department_name: &str) {
+    match departments.get(department_name) {
+        Some(department) => {
+            println!("  Employees in {}:", department_name);
+            for employee in department.iter() {
+                println!("  - {}", employee);
+            }
+        },
+        None => println!("Err: The {} department does not exist.", department_name),
     }
 }
 
