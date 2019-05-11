@@ -12,13 +12,7 @@ fn main() {
         if cmd == "quit" {
             std::process::exit(0);
         } else if cmd.starts_with("Add ") {
-            match parse_add(&cmd[4..]) {
-                Some((employee_name, department_name)) => {
-                    let department = departments.entry(department_name).or_insert(Vec::new());
-                    department.push(employee_name);
-                }
-                None => help(),
-            }
+            add_employee(&mut departments, &cmd);
         } else if cmd == "List" {
             list_everyone(&departments);
         } else if cmd.starts_with("List ") {
@@ -26,6 +20,16 @@ fn main() {
         } else {
             help();
         }
+    }
+}
+
+fn add_employee(departments: &mut HashMap<String, Vec<String>>, cmd: &str) {
+    match parse_add(&cmd[4..]) {
+        Some((employee_name, department_name)) => {
+            let department = departments.entry(department_name).or_insert(Vec::new());
+            department.push(employee_name);
+        }
+        None => help(),
     }
 }
 
