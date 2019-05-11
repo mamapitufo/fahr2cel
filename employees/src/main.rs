@@ -1,7 +1,9 @@
+use std::collections::HashMap;
 use std::io;
 
 fn main() {
     println!("Welcome to our People Inventory System!\n");
+    let mut departments: HashMap<String, Vec<String>> = HashMap::new();
 
     loop {
         println!("Please input your command (or type 'help')");
@@ -16,8 +18,9 @@ fn main() {
             std::process::exit(0);
         } else if cmd.starts_with("Add ") {
             match parse_add(&cmd[4..]) {
-                Some((employee, department)) => {
-                    println!("add {} to {}", employee, department);
+                Some((employee_name, department_name)) => {
+                    let department = departments.entry(department_name).or_insert(Vec::new());
+                    department.push(employee_name);
                 }
                 None => help(),
             }
