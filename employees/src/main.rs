@@ -14,9 +14,25 @@ fn main() {
 
         if cmd == "quit" {
             std::process::exit(0);
+        } else if cmd.starts_with("Add ") {
+            match parse_add(&cmd[4..]) {
+                Some((employee, department)) => {
+                    println!("add {} to {}", employee, department);
+                }
+                None => help(),
+            }
         } else {
             help();
         }
+    }
+}
+
+fn parse_add(cmd: &str) -> Option<(String, String)> {
+    let parts: Vec<&str> = cmd.split(" to ").collect();
+    if parts.len() == 2 {
+        Some((String::from(parts[0]), String::from(parts[1])))
+    } else {
+        None
     }
 }
 
