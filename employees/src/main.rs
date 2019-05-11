@@ -7,12 +7,7 @@ fn main() {
 
     loop {
         println!("Please input your command (or type 'help')");
-        let mut cmd = String::new();
-        io::stdin()
-            .read_line(&mut cmd)
-            .expect("Failed to read input (x_x)");
-
-        let cmd = cmd.trim();
+        let cmd = read_command();
 
         if cmd == "quit" {
             std::process::exit(0);
@@ -28,6 +23,15 @@ fn main() {
             help();
         }
     }
+}
+
+fn read_command() -> String {
+    let mut cmd = String::new();
+    io::stdin()
+        .read_line(&mut cmd)
+        .expect("Failed to read input (x_x)");
+
+    cmd.trim().to_string()
 }
 
 fn parse_add(cmd: &str) -> Option<(String, String)> {
